@@ -1,6 +1,8 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
 
+import { Books as BooksCollection } from '../../api/books/books.js';
+
 const handleAddBook = (event) => {
   event.preventDefault();
 
@@ -10,7 +12,7 @@ const handleAddBook = (event) => {
     read: document.querySelector('[name="bookRead"]').checked,
   };
 
-  Meteor.call('addBook', book, (error, bookId) => {
+  Meteor.call('books.insert', book, (error, bookId) => {
     if (error) {
       console.warn(error.reason);
     } else {
